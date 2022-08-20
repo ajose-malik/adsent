@@ -15,7 +15,7 @@ const Header = ({ auth }) => {
 			default:
 				return (
 					<li>
-						<a>Logout</a>
+						<a href='/api/logout'>Logout</a>
 					</li>
 				)
 		}
