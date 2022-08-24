@@ -17,7 +17,7 @@ app.use(
 		// Cookie Options
 		name: 'adSentSession',
 		maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-		// maxAge: 24 * 60 * 60 * 1000 // 24 hours
+		// MaxAge: 24 * 60 * 60 * 1000 // 24 hours
 		keys: [keys.cookieKey]
 	})
 )
@@ -27,6 +27,17 @@ app.use(passport.session())
 
 require('./routes/authRoutes')(app)
 require('./routes/billingRoutes')(app)
+
+if (process.env.NODE_ENV === 'production') {
+	// Serve production asset to client side
+	app.use(express.static('client/build'))
+
+	// If production asset is unavailable, then serve index.html
+	const path = require('path')
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+	})
+}
 
 const PORT = process.env.PORT || 4000
 app.listen(PORT, () => console.log(`STARTED ON ${PORT}`))
