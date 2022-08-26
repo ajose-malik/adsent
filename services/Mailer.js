@@ -7,10 +7,12 @@ class Mailer extends helper.Mail {
 	constructor({ subject, recipients }, content) {
 		super()
 
-		this.fromEmail = new helper.Email(sendGridEmail)
+		this.sendGridApi = sendgrid(keys.sendGridKey)
+		this.from_email = new helper.Email(sendGridEmail) // comes with sendgrid helper component
 		this.subject = subject
 		this.body = new helper.Content('text/html', content)
 		this.recipients = this.formatAddresses(recipients)
+
 		this.addContent(this.body) // comes with sendgrid helper component
 		this.addClickTracking()
 		this.addRecipients()
@@ -35,6 +37,17 @@ class Mailer extends helper.Mail {
 			personalize.addTo(recipient)
 		})
 		this.addPersonalization(personalize)
+	}
+
+	async send() {
+		const request = this.sendGridApi.emptyRequest({
+			method: 'POST',
+			path: '/v3/mail/send',
+			body: this.toJSON()
+		})
+
+		const response = this.sendGridApi.API(request)
+		return response
 	}
 }
 
