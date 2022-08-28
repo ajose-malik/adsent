@@ -17,14 +17,12 @@ class App extends Component {
 		return (
 			<div className='container'>
 				<BrowserRouter>
-					<div>
-						<Header />
-						<Routes>
-							<Route exact path='/' component={Landing} />
-							<Route exact path='/surveys' component={Dashboard} />
-							<Route exact path='/surveys/new' component={SurveyNew} />
-						</Routes>
-					</div>
+					<Header />
+					<Routes>
+						<Route exact path='/' element={<Landing />} />
+						<Route exact path='/surveys' element={<Dashboard />} />
+						<Route exact path='/surveys/new' element={<SurveyNew />} />
+					</Routes>
 				</BrowserRouter>
 			</div>
 		)
