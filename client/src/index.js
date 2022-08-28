@@ -9,6 +9,10 @@ import 'materialize-css/dist/css/materialize.min.css'
 import App from './components/App'
 import reducers from './reducers'
 
+// Development testing with Axios
+import axios from 'axios'
+window.axios = axios // allow usage of axios in browser
+
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk))
 
 ReactDOM.render(
