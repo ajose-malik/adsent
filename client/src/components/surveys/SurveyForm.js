@@ -28,7 +28,7 @@ const FIELDS = [
 ]
 class SurveyForm extends Component {
 	renderField() {
-		return FIELDS.map(({ label, name, meta }) => {
+		return FIELDS.map(({ label, name }) => {
 			return (
 				<Field
 					key={name}
@@ -62,7 +62,7 @@ class SurveyForm extends Component {
 function validate(values) {
 	const errors = {}
 
-	errors.email = validateEmails(values.email || '')
+	errors.emails = validateEmails(values.emails || '')
 
 	FIELDS.forEach(({ name, noValueError }) => {
 		if (!values[name]) {
