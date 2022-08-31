@@ -1,6 +1,6 @@
 export const formFields = [
 	{
-		label: 'Survey Title',
+		label: 'Campaign Title',
 		name: 'title',
 		noValueError: 'You must provide a title'
 	},
@@ -16,7 +16,7 @@ export const formFields = [
 	},
 	{
 		label: 'Recipient List',
-		name: 'emails',
+		name: 'recipients',
 		noValueError: 'You must provide an email address'
 	}
 ]
