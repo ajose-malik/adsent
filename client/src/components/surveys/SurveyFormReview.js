@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { formFields } from './formFields'
-import { withRouter } from 'react-router-dom' // history props is derived using withRouter
 import * as actions from '../../actions'
 
-const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
+const SurveyFormReview = ({ onCancel, formValues, submitSurvey }) => {
 	const reviewFields = formFields.map(({ name, label }) => {
 		return (
 			<div key={name}>
@@ -25,7 +24,7 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 				Back
 			</button>
 			<button
-				onClick={() => submitSurvey(formValues, history)}
+				onClick={() => submitSurvey(formValues)}
 				className='green btn-flat right white-text'
 			>
 				<i className='material-icons right'>mail</i>
@@ -38,4 +37,4 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 function mapStateToProps({ form }) {
 	return { formValues: form.surveyForm.values }
 }
-export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview))
+export default connect(mapStateToProps, actions)(SurveyFormReview)

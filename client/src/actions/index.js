@@ -11,9 +11,7 @@ export const handleToken = token => async dispatch => {
 	return dispatch({ type: FETCH_USER, payload: response.data })
 }
 
-export const submitSurvey = (values, history) => async dispatch => {
+export const submitSurvey = values => async dispatch => {
 	const response = await axios.post('/api/surveys', values)
-
-	history.push('/surveys') // history props is derived from SurveyFormReview using withRouter
 	return dispatch({ type: FETCH_USER, payload: response.data })
 }
